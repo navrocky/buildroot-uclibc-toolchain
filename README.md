@@ -1,4 +1,7 @@
 # GNU C++ with uClibc-ng toolchain (Buildroot)
+[![Docker Image CI](https://github.com/navrocky/buildroot-uclibc-toolchain/actions/workflows/docker-image.yml/badge.svg)](https://github.com/navrocky/buildroot-uclibc-toolchain/actions/workflows/docker-image.yml)
+[![Static Badge](https://img.shields.io/badge/Github-Repository%20link-white?style=plastic&logo=github)](https://github.com/navrocky/buildroot-uclibc-toolchain)
+
 
 This toolchain is built with [Buildroot](https://buildroot.org) and can be useful for building very small statically
 linked binaries for applications written in C++.
