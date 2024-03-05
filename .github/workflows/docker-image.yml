@@ -41,4 +41,3 @@ jobs:
           docker login -u ${DOCKER_USER} -p ${DOCKER_PASSWORD}
           docker push ${IMAGE_NAME}:${VERSION}
           docker push ${IMAGE_NAME}:latest
-
