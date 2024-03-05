@@ -1,4 +1,4 @@
-# G++ uClibc-ng toolchain (Buildroot)
+# GNU C++ with uClibc-ng toolchain (Buildroot)
 
 This toolchain is built with [Buildroot](https://buildroot.org) and can be useful for building very small statically
 linked binaries for applications written in C++.
@@ -8,7 +8,7 @@ Enabled options:
 - x86_64
 - g++-13
 - uClibc-ng
-- linuxthreads
+- linuxthreads (pthreads)
 - i18n
 
 To build with this toolchain use followed configuration:

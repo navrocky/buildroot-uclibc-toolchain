@@ -4,7 +4,7 @@ RUN set -x && \
     apt-get update && \
     apt-get -y install make gcc wget cpio rsync bc
 
-ENV BUILDROOT_VERSION=2023.11.1
+ARG BUILDROOT_VERSION
 
 RUN set -x && \
     wget https://buildroot.org/downloads/buildroot-${BUILDROOT_VERSION}.tar.gz && \
