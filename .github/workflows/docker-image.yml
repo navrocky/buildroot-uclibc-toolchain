@@ -11,19 +11,6 @@ env:
   IMAGE_NAME: navrocky/buildroot-uclibc-toolchain
 
 jobs:
-  update_readme:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - name: Update Docker Hub description
-        uses: meeDamian/sync-readme@v1.0.6
-        with:
-          user: ${{secrets.DOCKER_USER}}
-          pass: ${{secrets.DOCKER_PASSWORD}}
-          slug: sebbia/androidsdk-docker
-          readme: ./README.md
-          description: true
-
   build:
     runs-on: ubuntu-latest
     env:
@@ -41,3 +28,17 @@ jobs:
           docker login -u ${DOCKER_USER} -p ${DOCKER_PASSWORD}
           docker push ${IMAGE_NAME}:${VERSION}
           docker push ${IMAGE_NAME}:latest
+
+  update_readme:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Update Docker Hub description
+        uses: meeDamian/sync-readme@v1.0.6
+        with:
+          user: ${{secrets.DOCKER_USER}}
+          pass: ${{secrets.DOCKER_PASSWORD}}
+          slug: navrocky/buildroot-uclibc-toolchain
+          readme: ./README.md
+          description: true
+
