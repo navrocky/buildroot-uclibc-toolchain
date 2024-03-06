@@ -20,6 +20,8 @@ RUN set -x && \
 
 FROM debian:12
 
+ARG ARCH
+
 COPY --from=build /buildroot/output/host/ /buildroot-host/
 
 ENV PATH=/buildroot-host/bin:${PATH}
