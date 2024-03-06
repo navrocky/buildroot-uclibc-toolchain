@@ -12,7 +12,7 @@ RUN set -x && \
     tar -xzf buildroot-${BUILDROOT_VERSION}.tar.gz && \
     mv buildroot-${BUILDROOT_VERSION} buildroot
 
-COPY .config.${ARCH} buildroot/
+COPY .config.${ARCH} buildroot/.config
 
 RUN set -x && \
     cd buildroot && \
