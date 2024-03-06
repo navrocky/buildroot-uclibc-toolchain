@@ -9,18 +9,18 @@ env:
   DOCKER_USER: ${{secrets.DOCKER_USER}}
   DOCKER_PASSWORD: ${{secrets.DOCKER_PASSWORD}}
   IMAGE_NAME: navrocky/buildroot-uclibc-toolchain
+  VERSION: "2023.11.1"
 
 jobs:
-  build:
+  build_x86_64:
     runs-on: ubuntu-latest
-    env:
-      VERSION: "2023.11.1"
     steps:
       - uses: actions/checkout@v2
       - name: Build the Docker image
         run: >
-          docker build . --file Dockerfile 
+          docker build . --file Dockerfile
           --build-arg "BUILDROOT_VERSION=${VERSION}" 
+          --build-arg "ARCH=x86_64" 
           --tag ${IMAGE_NAME}:${VERSION}
           --tag ${IMAGE_NAME}:latest
       - name: Push image to Docker Hub
@@ -28,6 +28,23 @@ jobs:
           docker login -u ${DOCKER_USER} -p ${DOCKER_PASSWORD}
           docker push ${IMAGE_NAME}:${VERSION}
           docker push ${IMAGE_NAME}:latest
+
+  build_i686:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Build the Docker image
+        run: >
+          docker build . --file Dockerfile 
+          --build-arg "BUILDROOT_VERSION=${VERSION}" 
+          --build-arg "ARCH=i686" 
+          --tag ${IMAGE_NAME}:i686-${VERSION}
+          --tag ${IMAGE_NAME}:i686-latest
+      - name: Push image to Docker Hub
+        run: |
+          docker login -u ${DOCKER_USER} -p ${DOCKER_PASSWORD}
+          docker push ${IMAGE_NAME}:i686-${VERSION}
+          docker push ${IMAGE_NAME}:i686-latest
 
   update_readme:
     runs-on: ubuntu-latest
